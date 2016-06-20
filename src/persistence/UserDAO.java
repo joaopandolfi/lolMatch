@@ -41,6 +41,29 @@ public class UserDAO extends DAO {
     }
 
     /*
+    * Salva o usuário com funcao de insercao
+    * @param user {User}
+    * @returns boolean {boolean}
+    * */
+    public boolean saveCascade(User user){
+    	try {
+            open();
+
+            //TODO: TROCAR PARA FUNCAO DE INSERCAO
+            stmt = con.prepareStatement("INSERT INTO user(nome, email, senha) VALUES(?,?,?)");
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getLogin());
+            stmt.setString(3, user.getAndFlushPass());
+            stmt.execute();
+
+            close();
+        }catch (Exception e){
+            return false;
+        }
+        return true;    	
+    }
+    
+    /*
     * Salva o usuário
     * @param user {User}
     * @returns boolean {boolean}

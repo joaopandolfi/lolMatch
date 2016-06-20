@@ -1,0 +1,28 @@
+
+			.favorite-champ {
+			    vertical-align: top;
+    			margin-top: 15px;
+			}
+
+			/*.summoner-spell {
+				width: 32px;
+				height: 32px;
+				position: relative;
+				float: left;
+				margin: 2px;
+			}*/
+
+			.item-img, .summoner-spell {
+				background-image: url('http://lkimg.zamimg.com/asset-manager-cache/image/sprites/items_32.png');
+				background-size: auto;
+				width: 32px;
+				height: 32px;
+				position: relative;
+				float: left;
+				margin: 2px;
+			}
+
+			.summoner-spell {
+			    background-size: contain;
+			}
+

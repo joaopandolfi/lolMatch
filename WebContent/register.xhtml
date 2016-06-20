@@ -1,21 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>League Match | Registration Page</title>
     <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
     <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="#{request.contextPath}/dist/css/AdminLTE.min.css"/>
     <!-- iCheck -->
-    <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="#{request.contextPath}/plugins/iCheck/square/blue.css"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +28,7 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+  </h:head>
   <body class="hold-transition register-page" style="background-color: #194A4C">
     <div class="register-box">
       <div class="register-logo">
@@ -32,41 +37,41 @@
 
       <div class="register-box-body">
         <p class="login-box-msg">Register a new membership</p>
-        <form action="internal/index.html" method="post" name="register">
+        <h:form action="internal/index.html" method="post" name="register">
           <div class="form-group has-feedback">
-            <input name="name" type="text" class="form-control" placeholder="Full name">
+            <h:inputText value="#{mainBean.user.name}" name="name" type="text" class="form-control" p:placeholder="Full name"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input name="nick" type="text" class="form-control" placeholder="Nickname on League of Legends">
+            <h:inputText value="#{mainBean.user.player.name}" name="nick" type="text" class="form-control" p:placeholder="Nickname on League of Legends"/>
             <span class="glyphicon glyphicon-qrcode form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input name="email" type="email" class="form-control" placeholder="Email">
+            <h:inputText value="#{mainBean.user.login}" name="email" type="email" class="form-control" p:placeholder="Email"/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input name="pass1" type="password" class="form-control" placeholder="Password">
+            <h:inputSecret value="#{mainBean.user.pass}" name="pass1" type="password" class="form-control" p:placeholder="Password"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input name="pass2" type="password" class="form-control" placeholder="Retype password">
+            <h:inputSecret name="pass2" type="password" class="form-control" p:placeholder="Retype password"/>
             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
           </div>
           <div class="row">
             <div class="col-xs-8">
               <div class="checkbox icheck">
                 <label>
-                  <input name="agree" type="checkbox"> I agree to the <a href="#">terms</a>
+                 <h:selectBooleanCheckbox name="agree"/> I agree to the <a href="#">terms</a>
                 </label>
               </div>
             </div><!-- /.col -->
             <div class="col-xs-4">
-              <button type="submit" onclick="return validateRegister();" class="btn btn-primary btn-block btn-flat">Register</button>
+              <h:commandButton action="#{mainBean.login}" value="Register" onclick="return validateRegister();" class="btn btn-primary btn-block btn-flat"/>
             </div><!-- /.col -->
           </div>
-        </form>
-        <a href="../JsfModule/web/index.xhtml" class="text-center">I already have a membership</a>
+          <h:commandLink action="inicio" class="text-center" value="I already have a membership"/>
+        </h:form>
       </div><!-- /.form-box -->
     </div><!-- /.register-box -->
 

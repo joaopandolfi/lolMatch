@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -36,11 +37,11 @@
          <h:message></h:message>
         <h:form name="login">
           <div class="form-group has-feedback">
-            <h:inputText name="name" value="#{mainBean.user.login}" type="email" class="form-control" placeholder="Email"/>
+            <h:inputText name="name" value="#{mainBean.user.login}" type="email" class="form-control" p:placeholder="Email"/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <h:inputSecret name="pass" value="#{mainBean.user.pass}" type="password" class="form-control" placeholder="Password"/>
+            <h:inputSecret name="pass" value="#{mainBean.user.pass}" type="password" class="form-control" p:placeholder="Password"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
@@ -57,20 +58,22 @@
           </div>
         </h:form>
 
-        <a href="#">I forgot my password</a><br/>
-        <a href="register.html" class="text-center">Register a new membership</a>
-
+		<h:form>
+        <!--<a href="#">I forgot my password</a><br/>  -->
+        <h:commandLink action="register" class="text-center" value="Register a new membership"/>
+		</h:form>
+		
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
 
     <!-- Validacao -->
-    <script src="main/js/functions.js"></script>
+    <script src="#{request.contextPath}/main/js/functions.js"></script>
     <!-- jQuery 2.1.4 -->
-    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="#{request.contextPath}/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="#{request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
     <!-- iCheck -->
-    <script src="plugins/iCheck/icheck.min.js"></script>
+    <script src="#{request.contextPath}/plugins/iCheck/icheck.min.js"></script>
     <script type="text/javascript">
 
       $(function () {

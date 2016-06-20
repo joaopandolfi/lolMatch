@@ -15,6 +15,7 @@ import riot.LolAPI;
 @ManagedBean(name="mainBean")
 @SessionScoped
 public class MainBean implements Serializable {
+	private static final long serialVersionUID = 1L;
 	User user = new User();
 	LolAPI api = LolAPI.getInstance(Config.LOL_API);
 	
@@ -29,6 +30,17 @@ public class MainBean implements Serializable {
 		return "";
 	}
 
+	public String register(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		UserDAO userDAO = new UserDAO();
+		if(userDAO.saveCascade(user)){
+			return login();
+		}
+		System.out.println("Erro ao cadastrar usuario");
+		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erro a cadastrar usuario",""));
+		return "";
+	}
+	
 	public User getUser() {
 		return user;
 	}
@@ -37,6 +49,19 @@ public class MainBean implements Serializable {
 		this.user = user;
 	}
 	
-	
-	
+	public String makeAvaliationStars(double avaliation){
+		String modelStar ="<i class='fa fa-star%s margin-r-5'></i>";
+		String result = "";
+		for(int i = 0 ; i< 5;i++){
+			if(i <= avaliation)
+				result += String.format(modelStar, "");
+			else if(i <= (avaliation +1))
+				result+= String.format(modelStar, "-half-o");
+			else 
+				result+= String.format(modelStar, "-o");
+		}
+		return result;
+	}
+
+
 }

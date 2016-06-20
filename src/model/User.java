@@ -9,7 +9,7 @@ public class User {
     private String pass;
     private boolean logged;
     private String id;
-    private Player player;
+    private Player player = new Player();
 
     public void setLoginAndPass(String login, String pass){
         this.login = login;
