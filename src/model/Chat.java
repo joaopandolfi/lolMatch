@@ -8,7 +8,8 @@ import java.util.ArrayList;
 public class Chat {
     private int id_sender;
     private int id_receiver;
-    private ArrayList<Message> messages;
+    private int idChat;
+    private ArrayList<Message> messages = new ArrayList<Message>();
 
 
     // ===  Messages Controller ===
@@ -28,6 +29,12 @@ public class Chat {
         }
     }
 
+    public void addTextMessage(String textMessage){
+    	Message message = new Message();
+    	message.setMessage(textMessage);
+    	this.messages.add(message);
+    }
+    
     // ==== Getters and Setters ===
 
     public int getId_sender() {
@@ -49,4 +56,14 @@ public class Chat {
     public ArrayList<Message> getMessages() {
         return messages;
     }
+
+	public int getIdChat() {
+		return idChat;
+	}
+
+	public void setIdChat(int idChat) {
+		this.idChat = idChat;
+	}
+    
+    
 }

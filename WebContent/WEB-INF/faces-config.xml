@@ -49,6 +49,10 @@ version="2.1">
 			<from-outcome>find</from-outcome>
 			<to-view-id>/internal/find.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>chat</from-outcome>
+			<to-view-id>/internal/chat.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	
 	<navigation-rule>
