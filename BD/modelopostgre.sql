@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS carteira (
 -- Table chat
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS chat (
-  idmsg INT NOT NULL,
+  idmsg SERIAL NOT NULL,
   message TEXT NULL,
   read INT NULL,
   usuario_idusuario_sender INT NOT NULL,
@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS matchs (
 -- -----------------------------------------------------
 -- Table: message
 -- -----------------------------------------------------
-CREATE TABLE message
+CREATE TABLE IF NOT EXISTS message
 (
   idmessage serial NOT NULL,
   message text,

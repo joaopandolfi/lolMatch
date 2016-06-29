@@ -28,17 +28,29 @@ public class SearchControl {
     * Busca o player de acordo com o padrão de ranqueamento
     * @returns player {Player}
     * */
-    public ArrayList<Player> searchByCriteria(int userId){
+    public ArrayList<Player> searchByCriteria(int userId,String rank){
         ArrayList<Player> players = playerDAO.getAll(userId);
         
         for(Player player: players){
-        	player.jsonParser(api.query(queryMaker.getSummonersByName(player.getName())));
-            player.setGameDataByJson(api.query(queryMaker.getPlayerStatusById(player.getId())));
+        	player.setDataByJson(api.query(queryMaker.getSummonersByName(player.getName())));
+        	player.updateName();
+            player.setGameDataByJson(api.query(queryMaker.getRankedDataById(player.getIdInGame())));
         }
 
-        return players;
+        return filterPlayers(players,rank);
     }
 
+    //Retorna somente os que possuirem o mesmo elo
+    private ArrayList<Player> filterPlayers(ArrayList<Player> players, String rank){
+    	ArrayList<Player> filtered = new ArrayList<Player>();
+    	
+    	for(Player player:players){
+    		if(player.getGameData().getLeague().equals(rank))
+    			filtered.add(player);
+    	}
+    	return filtered;
+    }
+    
     /*
     * Busca o player pelo nome de invocador
     * @param name {String}

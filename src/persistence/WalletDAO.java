@@ -66,7 +66,7 @@ public class WalletDAO extends DAO{
             rs = stmt.executeQuery();
 
             while(rs.next()){
-                wallet.setSaldo(rs.getInt("value"));
+                wallet.setSaldo(rs.getInt("valor"));
                 wallet.setId(rs.getInt("idcarteira"));
             }
             close();

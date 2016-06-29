@@ -12,18 +12,19 @@ public class Player {
     private String name;
     private String idInGame;
     private String title;
+    private String userName;
     private double avaliation;
     private int valueWallet;
     private String rank;
     private int idTitle;
     private int profileIconId;
     private Wallet wallet;
-
+    
     private GameData gameData;
 
 
     public Player(){
-
+    	idInGame = "";
     }
 
     /*
@@ -40,9 +41,11 @@ public class Player {
     }
 
     public void setDataByJson(String json){
+    	if(json.equals("error_io"))
+    		return;
         JSONObject jsonObject = new JSONObject(json);
         jsonObject = jsonObject.getJSONObject(name.toLowerCase().replaceAll(" ",""));
-        idInGame = jsonObject.getString("id");
+        idInGame = String.format("%d",jsonObject.getInt("id"));
         profileIconId = jsonObject.getInt("profileIconId");
     }
 
@@ -83,6 +86,10 @@ public class Player {
         this.name = name;
     }
 
+    public void updateName(){
+    	this.userName = title;
+    }
+    
     public String getIdInGame() {
         return idInGame;
     }
@@ -138,6 +145,10 @@ public class Player {
     public void setProfileIconId(int profileIconId) {
         this.profileIconId = profileIconId;
     }
+    
+    public String getUserName(){
+    	return userName;
+    }
 
 //Game Data Control
 
@@ -147,11 +158,11 @@ public class Player {
 
     public void setGameData(GameData gameData){
         this.gameData = gameData;
-        rank = gameData.getRank();
+        rank = gameData.getLeague();
     }
 
     public void setGameDataByJson(String json){
-        this.gameData = GameData.jsonParser(json);
-        rank = gameData.getRank();
+        this.gameData = GameData.jsonParser(json,idInGame);
+        rank = gameData.getLeague();
     }
 }

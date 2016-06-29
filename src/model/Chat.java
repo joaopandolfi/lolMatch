@@ -9,6 +9,8 @@ public class Chat {
     private int id_sender;
     private int id_receiver;
     private int idChat;
+    private String nameUserFrom;
+    private String nameUserSender;
     private ArrayList<Message> messages = new ArrayList<Message>();
 
 
@@ -64,6 +66,20 @@ public class Chat {
 	public void setIdChat(int idChat) {
 		this.idChat = idChat;
 	}
-    
-    
+
+	public String getNameUserFrom() {
+		return nameUserFrom;
+	}
+
+	public void setNameUserFrom(String nameUserFrom) {
+		this.nameUserFrom = nameUserFrom;
+	}
+
+	public String getNameUserSender() {
+		return nameUserSender;
+	}
+
+	public void setNameUserSender(String nameUserSender) {
+		this.nameUserSender = nameUserSender;
+	}
 }

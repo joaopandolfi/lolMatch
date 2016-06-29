@@ -71,3 +71,27 @@ function follow(element) {
 		element.innerHTML = "Unfollow";
 	}
 }
+
+function sendMessageTo(idUser,idChat){
+	var chat = document.getElementById("contentMessages"+idUser);
+	var msgModel = 
+		"<!-- Message. Default to the left or right -->"+
+	"<div class='direct-chat-msg rigth'>"+
+	"<div class='direct-chat-info clearfix'>"+
+	"</div><!-- /.direct-chat-info -->"+
+	"<img class='direct-chat-img' src='../dist/img/img-rigth-chat.png'/><!-- /.direct-chat-img -->"+
+	"<div class='direct-chat-text'>"+
+		"%message%"+
+	"</div><!-- /.direct-chat-text -->"+
+"</div><!-- /.direct-chat-msg -->";
+	
+	var message = document.getElementById("msg"+idUser).value;
+	
+	$.getJSON("http://"+window.location.host+"/proj1/messenger?idChat="+idChat+"&from="+idUser+"&message"+message, function(result){
+	      $.each(result, function(i, field){
+	          msgModel = msgModel.replace(new RegExp("%message%", 'g'),message);
+	          chat.innerHTML += msgModel;
+	      });
+	  });
+}
+

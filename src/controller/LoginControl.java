@@ -32,8 +32,8 @@ public class LoginControl {
            // loggedPlayer = playerDAO.searchById(loggedUser.getId());
             loggedPlayer = user.getPlayer();
             loggedPlayer = loadWallet(loggedPlayer);
-            loggedPlayer.jsonParser(api.query(queryMaker.getSummonersByName(loggedUser.getName())));
-            loggedPlayer.setGameDataByJson(api.query(queryMaker.getPlayerStatusById(loggedUser.getId())));
+            loggedPlayer.setDataByJson(api.query(queryMaker.getSummonersByName(loggedUser.getPlayer().getName())));
+            loggedPlayer.setGameDataByJson(api.query(queryMaker.getRankedDataById(loggedUser.getPlayer().getIdInGame())));
             return true;
         }
 

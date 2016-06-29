@@ -49,7 +49,7 @@ public class MainBean implements Serializable {
 		this.user = user;
 	}
 	
-	public String makeAvaliationStars(double avaliation){
+	public static String makeAvaliationStars(double avaliation){
 		String modelStar ="<i class='fa fa-star%s margin-r-5'></i>";
 		String result = "";
 		for(int i = 0 ; i< 5;i++){

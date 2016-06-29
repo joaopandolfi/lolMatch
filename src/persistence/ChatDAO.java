@@ -22,6 +22,7 @@ public class ChatDAO extends DAO{
                 message = new Message();
                 message.setId(rs.getInt("idmessage"));
                 message.setMessage(rs.getString("message"));
+                message.setSender(rs.getInt("send"));
                 
                 messages.add(message);
             }
@@ -44,7 +45,7 @@ public class ChatDAO extends DAO{
             stmt.setInt(3, to);
             stmt.setInt(4, from);
   
-            stmt.executeQuery();
+            rs = stmt.executeQuery();
             while(rs.next()){
             	return false;
             }
@@ -89,9 +90,10 @@ public class ChatDAO extends DAO{
         try {
             open();
                       
-            stmt = con.prepareStatement("INSERT INTO message(message, idchat) VALUES(?,?)");
+            stmt = con.prepareStatement("INSERT INTO message(message, idchat, send) VALUES(?,?,?)");
             stmt.setString(1, message.getMessage());
             stmt.setInt(2, idChat);
+            stmt.setInt(3, message.getSender());
 
             stmt.execute();
             close();
@@ -109,7 +111,11 @@ public class ChatDAO extends DAO{
         Chat chat;
         try {
             open();
-            stmt = con.prepareStatement("SELECT * FROM chat WHERE usuario_idusuario_sender = ? OR usuario_idusuario_receiver = ?");
+            stmt = con.prepareStatement("SELECT c.idmsg, c.usuario_idusuario_sender, c.usuario_idusuario_receiver,  s.nome AS sender , r.nome AS receiver "+
+            		"FROM chat AS c "+
+            		"INNER JOIN usuario AS s ON c.usuario_idusuario_receiver = s.idusuario "+
+            		"INNER JOIN usuario AS r ON c.usuario_idusuario_sender = r.idusuario "+
+            		"WHERE c.usuario_idusuario_sender = ? OR c.usuario_idusuario_receiver = ?");
             stmt.setInt(1, idUser);
             stmt.setInt(2, idUser);
             rs = stmt.executeQuery();
@@ -120,6 +126,8 @@ public class ChatDAO extends DAO{
                 chat.setIdChat(rs.getInt("idmsg"));
                 chat.setId_sender(rs.getInt("usuario_idusuario_sender"));
                 chat.setId_receiver(rs.getInt("usuario_idusuario_receiver"));
+                chat.setNameUserFrom(rs.getString("receiver"));
+                chat.setNameUserSender(rs.getString("sender"));
                 chats.add(chat);
             }
             close();

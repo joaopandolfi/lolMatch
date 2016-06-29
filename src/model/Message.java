@@ -7,6 +7,7 @@ public class Message {
     private int id;
     private boolean read;
     private String message;
+    private int sender;
 
     public Message(){
 
@@ -35,4 +36,14 @@ public class Message {
     public void setMessage(String message) {
         this.message = message;
     }
+
+	public int getSender() {
+		return sender;
+	}
+
+	public void setSender(int sender) {
+		this.sender = sender;
+	}
+    
+    
 }

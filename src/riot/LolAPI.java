@@ -27,7 +27,7 @@ public class LolAPI {
         String out = "";
 
         try {
-            System.out.println(uri);
+            System.out.println("\nCall APIurl: "+uri);
             URL url = new URL(uri);
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -39,13 +39,13 @@ public class LolAPI {
             br.close();
 
         } catch (MalformedURLException mfu_e) {
-            mfu_e.printStackTrace();
+            //mfu_e.printStackTrace();
             out = "error_url";
         } catch (IOException io_e) {
-            io_e.printStackTrace();
+            //io_e.printStackTrace();
             out = "error_io";
         }
-
+        System.out.println("Response: "+out);
         return out;
     }
     //Devido a sincronia evita que seja criada varias instancias

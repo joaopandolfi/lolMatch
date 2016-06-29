@@ -28,8 +28,8 @@ public class PlayerDAO extends DAO{
 
             while(rs.next()) {
                 player = new Player();
-                player.setName(rs.getString("nome"));
-                player.setIdInGame(rs.getString("idingame"));
+                player.setName(rs.getString("idingame"));
+                player.setTitle(rs.getString("nome"));
                 player.setAvaliation(rs.getInt("avaliacao"));
                 player.setId(rs.getString("idusuario"));
                 players.add(player);

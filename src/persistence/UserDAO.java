@@ -48,12 +48,11 @@ public class UserDAO extends DAO {
     public boolean saveCascade(User user){
     	try {
             open();
-
-            //TODO: TROCAR PARA FUNCAO DE INSERCAO
-            stmt = con.prepareStatement("INSERT INTO user(nome, email, senha) VALUES(?,?,?)");
-            stmt.setString(1, user.getName());
-            stmt.setString(2, user.getLogin());
-            stmt.setString(3, user.getAndFlushPass());
+            stmt = con.prepareStatement("SELECT combo_insert(?,?,?,?)");
+            stmt.setString(1, user.getPlayer().getName());
+            stmt.setString(2, user.getName());
+            stmt.setString(3, user.getLogin());
+            stmt.setString(4, user.getPass());
             stmt.execute();
 
             close();

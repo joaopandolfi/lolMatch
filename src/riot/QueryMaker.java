@@ -49,6 +49,15 @@ public class QueryMaker {
     }
 
     /*
+     * Recupera os dados de ranked do usuario por ID
+     * @param idArray {String array}
+     * @returns LolQuery
+     * */
+    public LolQuery getRankedDataById(String idUser){
+    	return new LolQuery("br", "/api/lol/{region}/v2.5/league/by-summoner/{summonerIds}/entry", idUser);
+    }
+    
+    /*
     * Recupera status do player pelo Id
     * @param summonerId {String}
     * @returns LolQuery
